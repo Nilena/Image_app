@@ -1,0 +1,43 @@
+
+<div class="image-viewer-container">
+  <div class="image-container">
+    <img #image [src]="imageUrl"  alt="Upload Image"[ngClass]="{'grid': showGrid}" [ngStyle]="{'transform': transform}">
+  </div>
+  <div class="controls">
+    <button mat-mini-fab class="white-button" matTooltip="Upload Image" (click)="uploadImage($event)">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Zoom In" (click)="zoomIn()">
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Zoom Out" (click)="zoomOut()">
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Show/Hide Grid-lines" (click)="toggleGrid()">
+      <mat-icon>grid_on</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Rotate 90° Anti-clockwise" (click)="rotate(-90)">
+      <mat-icon>rotate_90_degrees_ccw</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Rotate 1° Anti-clockwise" (click)="rotate(-1)">
+      <mat-icon>rotate_left</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button"matTooltip="Rotate 1° Clockwise" (click)="rotate(1)">
+      <mat-icon>rotate_right</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button"matTooltip="Rotate 90° Clockwise" (click)="rotate(90)">
+      <mat-icon>rotate_90_degrees_ccw</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Flip Horizontal" (click)="flip('horizontal')">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Flip Vertical" (click)="flip('vertical')">
+      <mat-icon>swap_vert</mat-icon>
+    </button>
+    <button mat-mini-fab class="white-button" matTooltip="Reset Image" (click)="resetImage()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+</div>
+
+<input type="file" #fileInput (change)="onFileSelected($event)" hidden>
