@@ -19,7 +19,7 @@ This project is a web application for viewing and manipulating images. It includ
 
 Before you begin, ensure you have the following software installed:
 
-- **Node.js**: Version 20 or later ([Download Node.js](https://nodejs.org/))
+- **Node.js**: Version 20.9.0 or later ([Download Node.js](https://nodejs.org/))
 - **npm**: Version 10.1 or later (comes with Node.js)
 - **Angular CLI**: Version 18 (installable via npm)
 
