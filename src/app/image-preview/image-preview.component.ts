@@ -77,9 +77,7 @@ export class ImagePreviewComponent {
     }
   }
 
-  toggleGrid(): void {
-    this.showGrid = !this.showGrid;
-  }
+
 
   rotate(degrees: number): void {
     this.rotateAngle += degrees;
@@ -102,6 +100,21 @@ export class ImagePreviewComponent {
     this.flipVertical = false;
     this.transform = '';
   }
+
+  toggleGrid(): void {
+    this.showGrid = !this.showGrid;
+    this.applyGridClass();
+  }
+
+  private applyGridClass(): void {
+    const imageElement = this.fileInput.nativeElement.closest('.image-viewer-container').querySelector('img');
+    if (this.showGrid) {
+      imageElement.classList.add('grid');
+    } else {
+      imageElement.classList.remove('grid');
+    }
+  }
+
 
   applyTransform(): void {
     const flipHor = this.flipHorizontal ? -1 : 1;

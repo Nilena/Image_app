@@ -16,17 +16,17 @@
     height: 100px;
     margin: 0 5px;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 2px solid black;
     transition: border 0.3s;
   }
 
-  .white-button {
-    background-color: white;
+  .side-nav {
     color: green;
+    border: none;
   }
   
   .image-thumbnails img.active {
-    border: 2px solid blue;
+    border: 2px solid green;
   }
   
   .navigation-controls button {

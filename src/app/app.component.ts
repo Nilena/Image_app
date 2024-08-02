@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'image-app';
-  images: string[] = [];
-  currentIndex: number = 0;
+  images: string[] = []; 
+  currentIndex: number = 0; 
 
   onImagesUpdated(images: string[]) {
     this.images = images;

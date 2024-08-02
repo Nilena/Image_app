@@ -1,6 +1,6 @@
 <app-image-preview (imagesList)="onImagesUpdated($event)"></app-image-preview>
 
-<div class="image-gallery">
+<div *ngIf="images && images.length"class="image-gallery">
   <button mat-mini-fab class="side-nav" (click)="prevImage()" [disabled]="currentIndex === 0">
     <mat-icon>chevron_left</mat-icon>
   </button>
