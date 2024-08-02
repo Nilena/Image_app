@@ -31,8 +31,15 @@ npm -v
 ng version
 
 
+STEP TO LAUNCH LOCALLY
+
 ###Clone Repository
 
-git clone <repository-url>
+git clone https://github.com/Nilena/Image_app.git
+cd image_app
+npm install
+ng serve --open
+ng test
+
 
 
