@@ -1,9 +1,13 @@
 <div class="image-viewer-container">
-  <div class="image-container">
-    <img #image [src]="imageUrl" alt="Upload Image"
-         [ngClass]="{'grid': showGrid}"
-         [ngStyle]="{'transform': transform}">
-  </div>
+
+  @if(imageUrl){
+    <div class="image-container">
+      <img #image [src]="imageUrl" alt="Upload Image"
+           [ngClass]="{'grid': showGrid}"
+           [ngStyle]="{'transform': transform}">
+    </div>
+  }
+ 
   <div class="controls">
     <button mat-mini-fab class="white-button" matTooltip="Upload Image" (click)="uploadImage()">
       <mat-icon>cloud_upload</mat-icon>

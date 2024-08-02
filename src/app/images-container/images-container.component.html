@@ -1,0 +1,19 @@
+<div class="image-gallery">
+    <button mat-mini-fab class="side-nav" (click)="prevImage()" [disabled]="currentIndex === 0">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+  
+  
+    <div class="image-thumbnails">
+      @for (image of images; track image; ; let idx = $index){
+          <img  [src]="image"
+          [class.active]="idx === currentIndex"
+          (click)="currentIndex = idx"
+          alt="Thumbnail">
+          } 
+    </div>
+  
+    <button mat-mini-fab   class="side-nav" (click)="nextImage()" [disabled]="currentIndex===images.length -1">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
