@@ -77,8 +77,6 @@ export class ImagePreviewComponent {
     }
   }
 
-
-
   rotate(degrees: number): void {
     this.rotateAngle += degrees;
     this.applyTransform();
