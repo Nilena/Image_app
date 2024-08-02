@@ -1,0 +1,35 @@
+.image-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+  }
+  
+  .image-thumbnails {
+    display: flex;
+    overflow-x: auto;
+    margin: 0 10px;
+  }
+  
+  .image-thumbnails img {
+    width: 100px;
+    height: 100px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+  }
+
+  .white-button {
+    background-color: white;
+    color: green;
+  }
+  
+  .image-thumbnails img.active {
+    border: 2px solid blue;
+  }
+  
+  .navigation-controls button {
+    margin: 0 10px;
+  }
+  

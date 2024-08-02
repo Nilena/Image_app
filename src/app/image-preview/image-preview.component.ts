@@ -1,42 +1,68 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { fromEvent, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-image-preview',
   standalone: true,
-  imports: [MatIconModule, MatTooltipModule,MatCardModule,MatButtonModule,CommonModule],
+  imports: [MatIconModule, MatTooltipModule, MatButtonModule, CommonModule],
   templateUrl: './image-preview.component.html',
-  styleUrl: './image-preview.component.css'
+  styleUrls: ['./image-preview.component.css']
 })
 export class ImagePreviewComponent {
-  @ViewChild('image', { static: false }) image!: ElementRef;
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
-  imageUrl: string | ArrayBuffer | null = '';
+  @Input() imageUrl: string | ArrayBuffer | null = null;
+  @Output() imagesList = new EventEmitter<string[]>();
+
   transform: string = '';
   showGrid: boolean = false;
   scale: number = 1;
   rotateAngle: number = 0;
-
-  
   flipHorizontal: boolean = false;
   flipVertical: boolean = false;
 
-  uploadImage(event: Event): void {
+  uploadImage() {
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => this.imageUrl = reader.result;
-      reader.readAsDataURL(input.files[0]);
+    if (input.files && input.files.length > 0) {
+      const files = Array.from(input.files);
+      const imageFiles = files.filter(file => file.type.startsWith('image/'));
+      if (imageFiles.length > 0) {
+      this.readFiles(files).subscribe(images => {
+        this.imageUrl = images[0];  
+        this.imagesList.emit(images);
+      });
     }
+    }
+  }
+
+  private readFiles(files: File[]): Observable<string[]> {
+    const fileReaders = files.map(file => {
+      const reader = new FileReader();
+      const fileReader$ = fromEvent(reader, 'load').pipe(
+        map(() => reader.result as string)
+      );
+      reader.readAsDataURL(file);
+      return fileReader$;
+    });
+    return new Observable(observer => {
+      let images: string[] = [];
+      fileReaders.forEach(fileReader$ => {
+        fileReader$.subscribe(image => {
+          images.push(image);
+          if (images.length === files.length) {
+            observer.next(images);
+            observer.complete();
+          }
+        });
+      });
+    });
   }
 
   zoomIn(): void {
