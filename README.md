@@ -30,3 +30,9 @@ node -v
 npm -v
 ng version
 
+
+###Clone Repository
+
+git clone <repository-url>
+
+
