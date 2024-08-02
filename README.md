@@ -36,7 +36,7 @@ STEP TO LAUNCH LOCALLY
 ###Clone Repository
 
 git clone https://github.com/Nilena/Image_app.git
-cd image_app
+cd Image_app
 npm install
 ng serve --open
 ng test
